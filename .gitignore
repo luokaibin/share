@@ -16,6 +16,27 @@ dist-ssr
 .remote-assets
 components.d.ts
 
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Coverage
+coverage
+*.lcov
+.nyc_output
+
+# TypeScript
+*.tsbuildinfo
+
+# dotenv
+.env
+.env.*
+!.env.example
+
+# Caches
+.cache
+.parcel-cache
+.eslintcache
+
 # Editor
 .vscode/*
 !.vscode/extensions.json
@@ -25,3 +46,7 @@ components.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# Vite log timestamps
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
