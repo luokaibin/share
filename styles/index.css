@@ -1,0 +1,8 @@
+/**
+ * Slidev 会自动加载项目根下的 `styles/index.css`（见官方「目录结构」说明）。
+ * 默认 `.slidev-layout` 在 @slidev/client/styles/layouts-base.css 里为 `px-14 py-10`，
+ * 在此按需覆盖即可调整整套演示的版心内边距。
+ */
+.slidev-layout {
+  padding: 1.5rem 2.5rem;
+}

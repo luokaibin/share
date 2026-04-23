@@ -1,0 +1,22 @@
+{
+  "name": "code-shre",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "slidev demo.md --open",
+    "dev:demo": "slidev --open",
+    "dev:share": "slidev share.md --open",
+    "build": "slidev build",
+    "build:share": "slidev build share.md",
+    "build:share:pages": "slidev build share.md --base /$npm_package_name/",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.14.2",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "classnames": "^2.5.1",
+    "tailwind-merge": "^3.3.1",
+    "vue": "^3.5.29"
+  }
+}

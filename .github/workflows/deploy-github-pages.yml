@@ -1,0 +1,50 @@
+# Slidev → GitHub Pages（项目站：https://<用户>.github.io/<仓库名>/）
+# 仓库 Settings → Pages → Build and deployment → Source 选「GitHub Actions」
+# base 必须与仓库名一致；若仓库名为 username.github.io（用户站根域名），把下方 BASE 改为 "/"
+name: Deploy Slidev to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # 项目页：base = /<仓库名>/（末尾斜杠必填）
+      - name: Build Slidev
+        run: npx slidev build share.md --base /${{ github.event.repository.name }}/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
